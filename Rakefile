@@ -15,15 +15,14 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "agent_zeromq"
-  gem.homepage = "http://github.com/cbusbey/agent_zeromq"
-  gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
+  gem.homepage = "git://git.connamara.com/agent_zeromq.git"
+  gem.license = "Connamara"
+  gem.summary = %Q{Acceptance test framework for ZMQ applications}
   gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "cbusbey@connamara.com"
+  gem.email = "support@connamara.com"
   gem.authors = ["Chris Busbey"]
   # dependencies defined in Gemfile
 end
-Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
