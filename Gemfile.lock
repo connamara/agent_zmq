@@ -1,0 +1,22 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ffi (1.0.11-java)
+    ffi-rzmq (0.9.3)
+      ffi
+    git (1.2.5)
+    jeweler (1.6.4)
+      bundler (~> 1.0)
+      git (>= 1.2.5)
+      rake
+    rake (0.9.2.2)
+    rcov (0.9.10-java)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  bundler (~> 1.1)
+  ffi-rzmq
+  jeweler (~> 1.6.4)
+  rcov
