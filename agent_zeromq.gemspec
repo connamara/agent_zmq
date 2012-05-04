@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "agent_zeromq"
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = "2012-05-02"
+  s.date = "2012-05-04"
   s.description = "TODO: longer description of your gem"
   s.email = "support@connamara.com"
   s.extra_rdoc_files = [
@@ -19,12 +19,17 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.md",
     "Rakefile",
     "VERSION",
+    "agent_zeromq.gemspec",
     "lib/agent_zeromq.rb",
     "lib/agent_zeromq/agent.rb",
+    "lib/agent_zeromq/agents/base_agent.rb",
+    "lib/agent_zeromq/agents/pub_agent.rb",
+    "lib/agent_zeromq/agents/sub_agent.rb",
     "lib/agent_zeromq/message_cache.rb",
     "test/helper.rb",
     "test/test_agent_zeromq.rb"
