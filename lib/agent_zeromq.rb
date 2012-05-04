@@ -22,13 +22,17 @@ module AgentZeroMQ
     load path
   end
 
-  def define_agent(name=nil, &blk) 
-    name ||=File.basename(caller.first.gsub(/.rb:.+$/,""))
+  def define_agent(agent, &blk)
+    yield agent
+    agents << agent
+  end
 
-    AgentZeroMQ::Agent.new(name).tap do |agent|
-      yield agent
-      agents << agent
-    end
+  def define_ZMQ_SUB(name, &blk) 
+    define_agent(AgentZeroMQ::SubAgent.new(name), &blk)
+  end
+
+  def define_ZMQ_PUB(name, &blk)
+    define_agent(AgentZeroMQ::PubAgent.new(name), &blk)
   end
 
   #starts all configured agents
@@ -42,6 +46,10 @@ module AgentZeroMQ
 
   def stop
     agents.each {|a| a.stop}
+  end
+
+  def reset
+    agents.each {|a| a.reset}
   end
 
   def agents_hash

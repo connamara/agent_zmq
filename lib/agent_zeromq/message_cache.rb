@@ -7,9 +7,23 @@ module AgentZeroMQ::MessageCache
     msg_cpy
   end
 
+  def pop
+    result = nil
+    lock.lock
+    result = messages.pop
+    lock.unlock
+    result
+  end
+
   def add_msg msg
     lock.lock
     messages << msg
+    lock.unlock
+  end
+
+  def clear
+    lock.lock
+    messages.clear
     lock.unlock
   end
 
