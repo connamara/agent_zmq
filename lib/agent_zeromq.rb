@@ -35,6 +35,12 @@ module AgentZeroMQ
     define_agent(AgentZeroMQ::PubAgent.new(name), &blk)
   end
 
+  def define_ZMQ_REQ(name, &blk)
+    define_agent(AgentZeroMQ::ReqAgent.new(name), &blk)
+  end
+
+
+
   #starts all configured agents
   def start
     raise RuntimeError, "No ZeroMQ Agents Defined" if agents.empty?

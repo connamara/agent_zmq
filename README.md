@@ -19,6 +19,11 @@ The agent types correspond to underlying ZMQ Socket type under test
 * Connects or Binds to local address
 * Publishes
 
+### ZMQ_REQ
+
+* Connects or Binds to local address
+* Publishes request, returns response
+
 
 Usage
 -----
@@ -39,6 +44,11 @@ end
 AgentZeroMQ.define_ZMQ_PUB :my_pub_agent do |a|
   a.end_point_type=:connect
   a.end_point='tcp://127.0.0.1:5558'
+end
+
+AgentZeroMQ.define_ZMQ_REQ :my_req_agent do |a|
+  a.end_point_type=:connect
+  a.end_point='tcp://127.0.0.1:5552'
 end
 ```
 
@@ -83,4 +93,13 @@ The ```publish``` method takes a single message of one or more parts
 ```ruby
 my_pub_agent.publish "single part message"
 my_pub_agent.publish ["part 1", "part 2"]
+```
+
+#### ZMQ_REQ
+
+The ```publish``` method takes a single message of one or more parts. The agent blocks until a response is received and returned as an array of message parts
+
+```ruby
+response = my_req_agent.publish "single part message"
+response = my_pub_agent.publish ["part 1", "part 2"]
 ```
