@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "agent_zeromq"
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = "2012-05-08"
+  s.date = "2012-05-11"
   s.description = "TODO: longer description of your gem"
   s.email = "support@connamara.com"
   s.extra_rdoc_files = [
@@ -25,12 +25,17 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "agent_zeromq.gemspec",
+    "config/zmq_agents.rb",
+    "features/MessageInspection.feature",
+    "features/step_definitions/steps.rb",
+    "features/support/env.rb",
     "lib/agent_zeromq.rb",
     "lib/agent_zeromq/agent.rb",
     "lib/agent_zeromq/agents/base_agent.rb",
     "lib/agent_zeromq/agents/pub_agent.rb",
     "lib/agent_zeromq/agents/req_agent.rb",
     "lib/agent_zeromq/agents/sub_agent.rb",
+    "lib/agent_zeromq/cucumber.rb",
     "lib/agent_zeromq/message_cache.rb",
     "test/helper.rb",
     "test/test_agent_zeromq.rb"
@@ -46,20 +51,26 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<ffi-rzmq>, [">= 0"])
+      s.add_runtime_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.1"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<cucumber>, [">= 0"])
     else
       s.add_dependency(%q<ffi-rzmq>, [">= 0"])
+      s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.1"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<cucumber>, [">= 0"])
     end
   else
     s.add_dependency(%q<ffi-rzmq>, [">= 0"])
+    s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.1"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<cucumber>, [">= 0"])
   end
 end
 
