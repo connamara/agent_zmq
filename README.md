@@ -103,3 +103,8 @@ The ```publish``` method takes a single message of one or more parts. The agent 
 response = my_req_agent.publish "single part message"
 response = my_pub_agent.publish ["part 1", "part 2"]
 ```
+
+Cucumber
+--------
+
+There is some support for cucumber.  See features/ for example usage.
