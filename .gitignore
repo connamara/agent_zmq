@@ -1,3 +1,5 @@
+features/reports
+
 # rcov generated
 coverage
 
@@ -39,7 +41,7 @@ pkg
 #.\#*
 
 # For vim:
-#*.swp
+*.swp
 
 # For redcar:
 #.redcar
