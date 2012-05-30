@@ -22,24 +22,10 @@ class AgentZeroMQ::PubAgent
   end
 
   def publish msg
-    msg = [msg] unless msg.is_a? Array
-
-    while true do
-      msg_part=msg.shift
-
-      if msg.empty?
-        zmq_socket.send_string msg_part
-        break
-      else
-        zmq_socket.send_string msg_part, ZMQ::SNDMORE
-      end
-    end
+    AgentZeroMQ::Helpers.publish msg, zmq_socket
   end
 
   def reset
 
   end
-
-
-
 end

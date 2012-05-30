@@ -1,7 +1,9 @@
 module AgentZeroMQ
-  AGENT_PATH="./config/zmq_agents.rb"
-
   extend self
+
+  def agent_path
+    "./config/zmq_agents.rb"
+  end
 
   def agents
     return @agents if @agents
@@ -16,7 +18,7 @@ module AgentZeroMQ
   end
 
   def load_agents path=nil
-    path = File.expand_path(path || AGENT_PATH, Dir.pwd)
+    path = File.expand_path(path || agent_path, Dir.pwd)
     return if agent_files_loaded.include? path
     agent_files_loaded << path
     load path
@@ -39,7 +41,9 @@ module AgentZeroMQ
     define_agent(AgentZeroMQ::ReqAgent.new(name), &blk)
   end
 
-
+  def define_ZMQ_REP(name, &blk)
+    define_agent(AgentZeroMQ::RepAgent.new(name), &blk)
+  end
 
   #starts all configured agents
   def start
@@ -63,4 +67,5 @@ module AgentZeroMQ
   end
 end
 
+require 'agent_zeromq/helpers'
 require 'agent_zeromq/agent'

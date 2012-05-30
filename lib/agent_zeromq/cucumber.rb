@@ -10,7 +10,7 @@ end
 
 World(ZMQMessageCache)
 
-Then /^I should receive a message on ZeroMQ with agent "([^"]*)"$/ do |subscriber|
+Then /^I should receive a (?:request|response|message) on ZeroMQ with agent "([^"]*)"$/ do |subscriber|
   throw "Unknown agent #{subscriber}" unless AgentZeroMQ.agents_hash.has_key?(subscriber.to_sym)
   throw "#{subscriber} is not an agent type that receives messages" unless AgentZeroMQ.agents_hash[subscriber.to_sym].respond_to?(:pop)
 
@@ -18,13 +18,13 @@ Then /^I should receive a message on ZeroMQ with agent "([^"]*)"$/ do |subscribe
   @message.should_not be_nil
 end
 
-Then /^the ZeroMQ message should have (\d+) parts$/ do |length|
+Then /^the ZeroMQ (?:request|response|message) should have (\d+) parts$/ do |length|
   throw "last_zmq_message is nil" if last_zmq_message.nil?
 
   last_zmq_message.length == length.to_i
 end
 
-Then /^part (\d+) of the ZeroMQ message should be "([^"]*)"$/ do |index, value|
+Then /^part (\d+) of the ZeroMQ (?:request|response|message) should be "([^"]*)"$/ do |index, value|
   throw "last_zmq_message is nil" if last_zmq_message.nil?
 
   last_zmq_message.length.should >= index.to_i
