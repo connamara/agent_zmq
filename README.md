@@ -24,6 +24,11 @@ The agent types correspond to underlying ZMQ Socket type under test
 * Connects or Binds to local address
 * Publishes request, returns response
 
+### ZMQ_REP
+
+* Connects or Binds to local address
+* Listens for request, sends response
+
 
 Usage
 -----
@@ -50,6 +55,13 @@ AgentZeroMQ.define_ZMQ_REQ :my_req_agent do |a|
   a.end_point_type=:connect
   a.end_point='tcp://127.0.0.1:5552'
 end
+
+AgentZeroMQ.define_ZMQ_REP :my_rep_agent do |a|
+  a.reply = Proc.new {|msg| "ok"}
+  a.end_point_type=:bind
+  a.end_point='tcp://*:5552'
+end
+
 ```
 
 ### Starting, Stopping and Resetting
@@ -103,6 +115,19 @@ The ```publish``` method takes a single message of one or more parts. The agent 
 response = my_req_agent.publish "single part message"
 response = my_pub_agent.publish ["part 1", "part 2"]
 ```
+
+#### ZMQ_REP
+
+Like the ZMQ_SUB agent, ZMQ_REP provides a message cache
+
+```ruby
+all_messages_received = my_rep_agent.messages_received
+
+# returns and removes the last message received from the cache
+last_message_received = my_rep_agent.pop
+```
+
+When receiving requests, the agent will reply with the output of the ```reply``` Proc.  The return value of this proc may be in the form of a multi-part message.
 
 Cucumber
 --------

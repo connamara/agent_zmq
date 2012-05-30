@@ -1,14 +1,10 @@
-require 'java'
-require 'ffi-rzmq'
-
-require 'agent_zeromq/message_cache'
 require 'agent_zeromq/agents/base_agent'
 
-class AgentZeroMQ::SubAgent
-  include AgentZeroMQ::MessageCache
+class AgentZeroMQ::RepAgent
   include AgentZeroMQ::BaseAgent
+  include AgentZeroMQ::MessageCache
 
-  attr_reader :name
+  attr_accessor :reply
 
   def initialize name
     @name=name
@@ -23,7 +19,12 @@ class AgentZeroMQ::SubAgent
       @zmq_poller.poll(1000)
 
       @zmq_poller.readables.each do |sock|
-        add_msg AgentZeroMQ::Helpers.read_msg sock
+        request=AgentZeroMQ::Helpers.read_msg sock
+        add_msg request
+
+        unless @reply.nil?
+          AgentZeroMQ::Helpers.publish(@reply.call(request), sock)
+        end
       end
     end
 
@@ -31,9 +32,8 @@ class AgentZeroMQ::SubAgent
   end
 
   def sock_type
-    zmq_context.socket(ZMQ::SUB)
+    zmq_context.socket(ZMQ::REP)
   end
-
 
   def start_read_thread
     @zmq_poller = ZMQ::Poller.new
@@ -55,5 +55,4 @@ class AgentZeroMQ::SubAgent
   def reset
     clear
   end
-
 end
