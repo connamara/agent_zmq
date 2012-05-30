@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "git://git.connamara.com/agent_zeromq.git"
   gem.license = "Connamara"
   gem.summary = %Q{Acceptance test framework for ZMQ applications}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.description = %Q{Acceptance test framework for ZMQ applications. Includes some cucumber helpers.}
   gem.email = "support@connamara.com"
   gem.authors = ["Chris Busbey"]
   # dependencies defined in Gemfile

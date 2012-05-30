@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = "agent_zeromq"
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = "2012-05-11"
-  s.description = "TODO: longer description of your gem"
+  s.date = "2012-05-30"
+  s.description = "Acceptance test framework for ZMQ applications. Includes some cucumber helpers."
   s.email = "support@connamara.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -33,9 +33,11 @@ Gem::Specification.new do |s|
     "lib/agent_zeromq/agent.rb",
     "lib/agent_zeromq/agents/base_agent.rb",
     "lib/agent_zeromq/agents/pub_agent.rb",
+    "lib/agent_zeromq/agents/rep_agent.rb",
     "lib/agent_zeromq/agents/req_agent.rb",
     "lib/agent_zeromq/agents/sub_agent.rb",
     "lib/agent_zeromq/cucumber.rb",
+    "lib/agent_zeromq/helpers.rb",
     "lib/agent_zeromq/message_cache.rb",
     "test/helper.rb",
     "test/test_agent_zeromq.rb"
