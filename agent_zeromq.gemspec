@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "agent_zeromq"
-  s.version = "0.4.0"
+  s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = "2012-05-30"
+  s.date = "2012-06-11"
   s.description = "Acceptance test framework for ZMQ applications. Includes some cucumber helpers."
   s.email = "support@connamara.com"
   s.extra_rdoc_files = [
