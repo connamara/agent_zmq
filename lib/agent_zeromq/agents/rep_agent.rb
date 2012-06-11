@@ -23,7 +23,7 @@ class AgentZeroMQ::RepAgent
         add_msg request
 
         unless @reply.nil?
-          AgentZeroMQ::Helpers.publish(@reply.call(request), sock)
+          AgentZeroMQ::Helpers.publish(sock, @reply.call(request))
         end
       end
     end

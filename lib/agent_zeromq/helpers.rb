@@ -14,7 +14,7 @@ module AgentZeroMQ
       msg_parts
     end
 
-    def publish msg, socket
+    def publish socket, msg
       msg = [msg] unless msg.is_a? Array
 
       while true do

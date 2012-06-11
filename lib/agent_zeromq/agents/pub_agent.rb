@@ -22,7 +22,7 @@ class AgentZeroMQ::PubAgent
   end
 
   def publish msg
-    AgentZeroMQ::Helpers.publish msg, zmq_socket
+    AgentZeroMQ::Helpers.publish zmq_socket, msg
   end
 
   def reset
