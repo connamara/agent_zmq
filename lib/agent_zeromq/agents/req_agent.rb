@@ -22,7 +22,7 @@ class AgentZeroMQ::ReqAgent
   end
 
   def publish msg
-    AgentZeroMQ::Helpers.publish(msg, zmq_socket)
+    AgentZeroMQ::Helpers.publish(zmq_socket, msg)
     AgentZeroMQ::Helpers.read_msg zmq_socket
  end
 
