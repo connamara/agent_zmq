@@ -1,5 +1,5 @@
-require 'java'
 require 'ffi-rzmq'
+require 'thread'
 
 require 'agent_zeromq/message_cache'
 require 'agent_zeromq/agents/base_agent'
@@ -14,12 +14,17 @@ class AgentZeroMQ::SubAgent
     @name=name
     @socket_opts=[]
 
+    @mutex=Mutex.new
     @read_thread=nil
-    @do_run_read_thread = java.util.concurrent.atomic.AtomicBoolean.new(true)
+    @do_run_read_thread = true
   end
 
   def do_read 
-    while @do_run_read_thread.get
+    while true 
+      @mutex.synchronize do
+        return unless @do_run_read_thread
+      end
+
       @zmq_poller.poll(1000)
 
       @zmq_poller.readables.each do |sock|
@@ -47,7 +52,9 @@ class AgentZeroMQ::SubAgent
   end
 
   def stop
-    @do_run_read_thread.set(false)
+    @mutex.synchronize do
+      @do_run_read_thread = false
+    end
     @read_thread.join
     zmq_socket.close
   end

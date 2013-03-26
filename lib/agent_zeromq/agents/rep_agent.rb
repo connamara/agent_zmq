@@ -1,4 +1,5 @@
 require 'agent_zeromq/agents/base_agent'
+require 'thread'
 
 class AgentZeroMQ::RepAgent
   include AgentZeroMQ::BaseAgent
@@ -11,11 +12,15 @@ class AgentZeroMQ::RepAgent
     @socket_opts=[]
 
     @read_thread=nil
-    @do_run_read_thread = java.util.concurrent.atomic.AtomicBoolean.new(true)
+    @mutex = Mutex.new
+    @do_run_read_thread = true
   end
 
   def do_read 
-    while @do_run_read_thread.get
+    while true 
+      @mutex.synchronize do
+        return unless @do_run_read_thread
+      end
       @zmq_poller.poll(1000)
 
       @zmq_poller.readables.each do |sock|
@@ -47,7 +52,9 @@ class AgentZeroMQ::RepAgent
   end
 
   def stop
-    @do_run_read_thread.set(false)
+    @mutex.synchronize do
+      @do_run_read_thread=false
+    end
     @read_thread.join
     zmq_socket.close
   end
