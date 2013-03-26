@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "agent_zeromq"
-  s.version = "0.4.1"
+  s.version = "0.4.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chris Busbey"]
-  s.date = "2012-06-11"
+  s.date = "2013-03-26"
   s.description = "Acceptance test framework for ZMQ applications. Includes some cucumber helpers."
   s.email = "support@connamara.com"
   s.extra_rdoc_files = [
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   s.homepage = "git://git.connamara.com/agent_zeromq.git"
   s.licenses = ["Connamara"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.24"
   s.summary = "Acceptance test framework for ZMQ applications"
 
   if s.respond_to? :specification_version then
@@ -58,6 +58,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<cucumber>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
     else
       s.add_dependency(%q<ffi-rzmq>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
@@ -65,6 +66,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<cucumber>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
     end
   else
     s.add_dependency(%q<ffi-rzmq>, [">= 0"])
@@ -73,6 +75,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<cucumber>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
   end
 end
 
