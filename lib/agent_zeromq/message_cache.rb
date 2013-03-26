@@ -1,30 +1,31 @@
+require 'thread'
 module AgentZeroMQ::MessageCache
   def messages_received
-    lock.lock
-    msg_cpy = messages.dup
-    lock.unlock
+    lock.synchronize do
+      msg_cpy = messages.dup
+    end
 
     msg_cpy
   end
 
   def pop
     result = nil
-    lock.lock
-    result = messages.pop
-    lock.unlock
+    lock.synchronize do
+      result = messages.pop
+    end
     result
   end
 
   def add_msg msg
-    lock.lock
-    messages << msg
-    lock.unlock
+    lock.synchronize do
+      messages << msg
+    end
   end
 
   def clear
-    lock.lock
-    messages.clear
-    lock.unlock
+    lock.synchronize do
+      messages.clear
+    end
   end
 
   private
@@ -34,6 +35,6 @@ module AgentZeroMQ::MessageCache
   end
 
   def lock
-    @lock||=java.util.concurrent.locks.ReentrantLock.new
+    @lock||=Mutex.new
   end
 end
