@@ -2,18 +2,14 @@ require 'thread'
 module AgentZeroMQ::MessageCache
   def messages_received
     lock.synchronize do
-      msg_cpy = messages.dup
+      return messages.dup
     end
-
-    msg_cpy
   end
 
   def pop
-    result = nil
     lock.synchronize do
-      result = messages.pop
+      return messages.pop
     end
-    result
   end
 
   def add_msg msg
