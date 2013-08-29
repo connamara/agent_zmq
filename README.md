@@ -1,4 +1,4 @@
-agent\_zeromq
+agent\_zeromq [![Build Status](https://travis-ci.org/connamara/agent_zeromq.png?branch=master)](https://travis-ci.org/connamara/agent_zeromq)
 ============
 
 Agent framework designed for testing ZeroMQ Applications 
