@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
     "spec/agent_zmq/message_cache_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "git://git.connamara.com/agent_zmq.git"
+  s.homepage = "https://github.com/connamara/agent_zmq"
   s.licenses = ["GPL"]
   s.require_paths = ["lib"]
   s.rubygems_version = "2.0.7"
