@@ -22,9 +22,8 @@ task :default => :test
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "agent_zmq"
-  gem.homepage = "git://git.connamara.com/agent_zmq.git"
+  gem.homepage = "https://github.com/connamara/agent_zmq"
   gem.license = "GPL"
   gem.summary = %Q{Acceptance test framework for ZeroMQ applications}
   gem.description = %Q{Acceptance test framework for ZeroMQ applications. Includes some cucumber helpers.}
