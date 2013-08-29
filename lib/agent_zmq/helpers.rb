@@ -1,4 +1,4 @@
-module AgentZeroMQ
+module AgentZMQ
   module Helpers
     extend self
 

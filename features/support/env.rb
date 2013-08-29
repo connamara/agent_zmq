@@ -1,8 +1,8 @@
 $: << File.expand_path("../../../lib", __FILE__)
 
-require 'agent_zeromq/cucumber'
+require 'agent_zmq/cucumber'
 
-AgentZeroMQ.start
+AgentZMQ.start
 at_exit {
-  AgentZeroMQ.stop
+  AgentZMQ.stop
 }

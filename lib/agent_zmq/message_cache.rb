@@ -1,5 +1,5 @@
 require 'thread'
-module AgentZeroMQ::MessageCache
+module AgentZMQ::MessageCache
   def messages_received
     lock.synchronize do
       return messages.dup

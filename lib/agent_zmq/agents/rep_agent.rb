@@ -1,21 +1,18 @@
-require 'ffi-rzmq'
+require 'agent_zmq/agents/base_agent'
 require 'thread'
 
-require 'agent_zeromq/message_cache'
-require 'agent_zeromq/agents/base_agent'
+class AgentZMQ::RepAgent
+  include AgentZMQ::BaseAgent
+  include AgentZMQ::MessageCache
 
-class AgentZeroMQ::SubAgent
-  include AgentZeroMQ::MessageCache
-  include AgentZeroMQ::BaseAgent
-
-  attr_reader :name
+  attr_accessor :reply
 
   def initialize name
     @name=name
     @socket_opts=[]
 
-    @mutex=Mutex.new
     @read_thread=nil
+    @mutex = Mutex.new
     @do_run_read_thread = true
   end
 
@@ -24,11 +21,15 @@ class AgentZeroMQ::SubAgent
       @mutex.synchronize do
         return unless @do_run_read_thread
       end
-
       @zmq_poller.poll(1000)
 
       @zmq_poller.readables.each do |sock|
-        add_msg AgentZeroMQ::Helpers.read_msg sock
+        request=AgentZMQ::Helpers.read_msg sock
+        add_msg request
+
+        unless @reply.nil?
+          AgentZMQ::Helpers.publish(sock, @reply.call(request))
+        end
       end
     end
 
@@ -36,9 +37,8 @@ class AgentZeroMQ::SubAgent
   end
 
   def sock_type
-    zmq_context.socket(ZMQ::SUB)
+    zmq_context.socket(ZMQ::REP)
   end
-
 
   def start_read_thread
     @zmq_poller = ZMQ::Poller.new
@@ -53,7 +53,7 @@ class AgentZeroMQ::SubAgent
 
   def stop
     @mutex.synchronize do
-      @do_run_read_thread = false
+      @do_run_read_thread=false
     end
     @read_thread.join
     zmq_socket.close
@@ -62,5 +62,4 @@ class AgentZeroMQ::SubAgent
   def reset
     clear
   end
-
 end

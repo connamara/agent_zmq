@@ -1,7 +1,7 @@
-require 'agent_zeromq/agents/base_agent'
+require 'agent_zmq/agents/base_agent'
 
-class AgentZeroMQ::PubAgent
-  include AgentZeroMQ::BaseAgent
+class AgentZMQ::PubAgent
+  include AgentZMQ::BaseAgent
 
   def initialize name
     @name=name
@@ -22,7 +22,7 @@ class AgentZeroMQ::PubAgent
   end
 
   def publish msg
-    AgentZeroMQ::Helpers.publish zmq_socket, msg
+    AgentZMQ::Helpers.publish zmq_socket, msg
   end
 
   def reset

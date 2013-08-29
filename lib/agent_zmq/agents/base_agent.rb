@@ -1,4 +1,4 @@
-module AgentZeroMQ::BaseAgent
+module AgentZMQ::BaseAgent
   attr_reader :name
 
   attr_accessor :end_point_type, :end_point, :socket_opts

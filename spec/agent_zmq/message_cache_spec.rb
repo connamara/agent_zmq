@@ -3,10 +3,10 @@ require 'spec_helper'
 class DummyClass
 end
 
-describe AgentZeroMQ::MessageCache do
+describe AgentZMQ::MessageCache do
   before(:each) do
     @cache = DummyClass.new
-    @cache.extend(AgentZeroMQ::MessageCache)
+    @cache.extend(AgentZMQ::MessageCache)
   end
 
   describe "pop" do

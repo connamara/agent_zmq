@@ -1,4 +1,4 @@
-require File.expand_path("../../agent_zeromq", __FILE__)
+require File.expand_path("../../agent_zmq", __FILE__)
 
 require 'rspec'
 
@@ -11,10 +11,10 @@ end
 World(ZMQMessageCache)
 
 Then /^I should receive a (?:request|response|message) on ZeroMQ with agent "([^"]*)"$/ do |subscriber|
-  throw "Unknown agent #{subscriber}" unless AgentZeroMQ.agents_hash.has_key?(subscriber.to_sym)
-  throw "#{subscriber} is not an agent type that receives messages" unless AgentZeroMQ.agents_hash[subscriber.to_sym].respond_to?(:pop)
+  throw "Unknown agent #{subscriber}" unless AgentZMQ.agents_hash.has_key?(subscriber.to_sym)
+  throw "#{subscriber} is not an agent type that receives messages" unless AgentZMQ.agents_hash[subscriber.to_sym].respond_to?(:pop)
 
-  @message=AgentZeroMQ.agents_hash[subscriber.to_sym].pop
+  @message=AgentZMQ.agents_hash[subscriber.to_sym].pop
   @message.should_not be_nil
 end
 

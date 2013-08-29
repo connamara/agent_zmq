@@ -1,4 +1,4 @@
-module AgentZeroMQ
+module AgentZMQ
   extend self
 
   def agent_path
@@ -30,24 +30,24 @@ module AgentZeroMQ
   end
 
   def define_ZMQ_SUB(name, &blk) 
-    define_agent(AgentZeroMQ::SubAgent.new(name), &blk)
+    define_agent(AgentZMQ::SubAgent.new(name), &blk)
   end
 
   def define_ZMQ_PUB(name, &blk)
-    define_agent(AgentZeroMQ::PubAgent.new(name), &blk)
+    define_agent(AgentZMQ::PubAgent.new(name), &blk)
   end
 
   def define_ZMQ_REQ(name, &blk)
-    define_agent(AgentZeroMQ::ReqAgent.new(name), &blk)
+    define_agent(AgentZMQ::ReqAgent.new(name), &blk)
   end
 
   def define_ZMQ_REP(name, &blk)
-    define_agent(AgentZeroMQ::RepAgent.new(name), &blk)
+    define_agent(AgentZMQ::RepAgent.new(name), &blk)
   end
 
   #starts all configured agents
   def start
-    raise RuntimeError, "No ZeroMQ Agents Defined" if agents.empty?
+    raise RuntimeError, "No ZMQ Agents Defined" if agents.empty?
 
     agents.each do |a|
       a.start
@@ -67,5 +67,5 @@ module AgentZeroMQ
   end
 end
 
-require 'agent_zeromq/helpers'
-require 'agent_zeromq/agent'
+require 'agent_zmq/helpers'
+require 'agent_zmq/agent'

@@ -1,4 +1,4 @@
-If you come across any issues, please [tell us](https://github.com/connamara/agent_zeromq/issues).
+If you come across any issues, please [tell us](https://github.com/connamara/agent_zmq/issues).
 Pull requests (with tests) are appreciated. No pull request is too small. Please help with:
 
 * Reporting bugs
@@ -8,11 +8,11 @@ Pull requests (with tests) are appreciated. No pull request is too small. Please
 * Cleaning whitespace
 * Refactoring code
 * Adding tests
-* Closing [issues](https://github.com/connamara/agent_zeromq/issues)
+* Closing [issues](https://github.com/connamara/agent_zmq/issues)
 
-Contributing to agent_zeromq:
+Contributing to agent_zmq:
 
-1. Fork the [official repository](https://github.com/connamara/agent_zeromq/tree/master).
+1. Fork the [official repository](https://github.com/connamara/agent_zmq/tree/master).
 2. Make your changes in a topic branch.
 3. Send a pull request.
 

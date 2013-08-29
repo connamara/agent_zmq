@@ -1,7 +1,7 @@
-agent\_zeromq [![Build Status](https://travis-ci.org/connamara/agent_zeromq.png?branch=master)](https://travis-ci.org/connamara/agent_zeromq)
+agent\_zmq [![Build Status](https://travis-ci.org/connamara/agent_zmq.png?branch=master)](https://travis-ci.org/connamara/agent_zmq)
 ============
 
-Agent framework designed for testing ZeroMQ Applications 
+Agent framework designed for testing [ZeroMQ](http://zeromq.org/) Applications 
 
 Usage
 -----
@@ -37,25 +37,25 @@ The agent types correspond to underlying ZMQ Socket type under test
 Inside of your project, declare your agents inside of ```config/zmq_agents.rb``` like this:     
 
 ```ruby
-require 'agent_zeromq'
+require 'agent_zmq'
 
-AgentZeroMQ.define_ZMQ_SUB :my_sub_agent do |a|
+AgentZMQ.define_ZMQ_SUB :my_sub_agent do |a|
   a.socket_opts << {ZMQ::SUBSCRIBE=>'com.connamara.BODPosition'}
   a.end_point_type=:bind
   a.end_point='tcp://*:5556'
 end
 
-AgentZeroMQ.define_ZMQ_PUB :my_pub_agent do |a|
+AgentZMQ.define_ZMQ_PUB :my_pub_agent do |a|
   a.end_point_type=:connect
   a.end_point='tcp://127.0.0.1:5558'
 end
 
-AgentZeroMQ.define_ZMQ_REQ :my_req_agent do |a|
+AgentZMQ.define_ZMQ_REQ :my_req_agent do |a|
   a.end_point_type=:connect
   a.end_point='tcp://127.0.0.1:5552'
 end
 
-AgentZeroMQ.define_ZMQ_REP :my_rep_agent do |a|
+AgentZMQ.define_ZMQ_REP :my_rep_agent do |a|
   a.reply = Proc.new {|msg| "ok"}
   a.end_point_type=:bind
   a.end_point='tcp://*:5552'
@@ -65,19 +65,19 @@ end
 ### Starting, Stopping and Resetting
 
 ```ruby
-require 'agent_zeromq'
-AgentZeroMQ.start
-at_exit { AgentZeroMQ.stop }
+require 'agent_zmq'
+AgentZMQ.start
+at_exit { AgentZMQ.stop }
 ```
 
-You may want to reset the agent states between tests without stopping and starting. This may be done with ```AgentZeroMQ.reset```
+You may want to reset the agent states between tests without stopping and starting. This may be done with ```AgentZMQ.reset```
 
 ### Getting your agent
 
 Grab the agent by the name given in the config file
 
 ```ruby
-my_agent = AgentZeroMQ.agents_hash[:my_sub_agent]  
+my_agent = AgentZMQ.agents_hash[:my_sub_agent]  
 ```
 
 ### Agent Interfaces
@@ -129,36 +129,36 @@ When receiving requests, the agent will reply with the output of the ```reply```
 
 ### Cucumber
 
-There is some support for cucumber.  See [features](https://github.com/connamara/agent_zeromq/blob/master/features) for example usage.
+There is some support for cucumber.  See [features](https://github.com/connamara/agent_zmq/blob/master/features) for example usage.
 
 ### More
 
-Check out [specs](https://github.com/connamara/agent_zeromq/blob/master/spec) and [features](https://github.com/connamara/agent_zeromq/blob/master/features) to see all the ways you can use agent_zeromq.
+Check out [specs](https://github.com/connamara/agent_zmq/blob/master/spec) and [features](https://github.com/connamara/agent_zmq/blob/master/features) to see all the ways you can use agent_zmq.
 
 Install
 -------
 
 ```shell
-gem install agent_zeromq
+gem install agent_zmq
 ```
 
 or add the following to Gemfile:
 ```ruby
-gem 'agent_zeromq'
+gem 'agent_zmq'
 ```
 and run `bundle install` from your shell.
 
 More Information
 ----------------
 
-* [Rubygems](https://rubygems.org/gems/agent_zeromq)
-* [Issues](https://github.com/connamara/agent_zeromq/issues)
+* [Rubygems](https://rubygems.org/gems/agent_zmq)
+* [Issues](https://github.com/connamara/agent_zmq/issues)
 * [Connamara Systems](http://connamara.com)
 
 Contributing
 ------------
 
-Please see the [contribution guidelines](https://github.com/connamara/agent_zeromq/blob/master/CONTRIBUTION_GUIDELINES.md).
+Please see the [contribution guidelines](https://github.com/connamara/agent_zmq/blob/master/CONTRIBUTION_GUIDELINES.md).
 
 Credits
 -------
@@ -170,13 +170,13 @@ Contributers:
 
 ![Connamara Systems](http://www.connamara.com/images/home-connamara-logo-lg.png)
 
-agent_zeromq is maintained and funded by [Connamara Systems, llc](http://connamara.com).
+agent_zmq is maintained and funded by [Connamara Systems, llc](http://connamara.com).
 
 The names and logos for Connamara Systems are trademarks of Connamara Systems, llc.
 
 Licensing
 ---------
 
-agent_zeromq is Copyright © 2013 Connamara Systems, llc. 
+agent_zmq is Copyright © 2013 Connamara Systems, llc. 
 
-This software is available under the GPL and a commercial license.  Please see the [LICENSE](https://github.com/connamara/agent_zeromq/blob/master/LICENSE.txt) file for the terms specified by the GPL license.  The commercial license offers more flexible licensing terms compared to the GPL, and includes support services.  [Contact us](mailto:info@connamara.com) for more information on the Connamara commercial license, what it enables, and how you can start developing with it.
+This software is available under the GPL and a commercial license.  Please see the [LICENSE](https://github.com/connamara/agent_zmq/blob/master/LICENSE.txt) file for the terms specified by the GPL license.  The commercial license offers more flexible licensing terms compared to the GPL, and includes support services.  [Contact us](mailto:info@connamara.com) for more information on the Connamara commercial license, what it enables, and how you can start developing with it.
