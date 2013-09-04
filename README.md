@@ -131,6 +131,10 @@ When receiving requests, the agent will reply with the output of the ```reply```
 
 There is some support for cucumber.  See [features](https://github.com/connamara/agent_zmq/blob/master/features) for example usage.
 
+### Pairing with a Serialization Method
+
+Once a message is captured, you may want to parse and inspect it some way. The message serialization technique is specific to the system being tested.  Some common serialization methods include JSON and Protocol Buffers.  [json\_spec](https://github.com/collectiveidea/json_spec) and [protobuf_spec](https://github.com/connamara/protobuf_spec) are two examples of testing libraries that can be easily paired with agent\_zmq for complete testing.
+
 ### More
 
 Check out [specs](https://github.com/connamara/agent_zmq/blob/master/spec) and [features](https://github.com/connamara/agent_zmq/blob/master/features) to see all the ways you can use agent_zmq.
