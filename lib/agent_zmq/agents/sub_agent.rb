@@ -1,6 +1,3 @@
-require 'ffi-rzmq'
-require 'thread'
-
 require 'agent_zmq/message_cache'
 require 'agent_zmq/agents/base_agent'
 

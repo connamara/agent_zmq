@@ -9,6 +9,21 @@ describe AgentZMQ::MessageCache do
     @cache.extend(AgentZMQ::MessageCache)
   end
 
+  describe "shift" do
+    it "returns nil if empty" do
+      @cache.shift.should be_nil
+    end
+
+    it "returns shift messages in fifo" do
+      @cache.add_msg "hello"
+      @cache.add_msg "world"
+
+      @cache.shift.should ==("hello")
+      @cache.shift.should ==("world")
+      @cache.pop.should be_nil
+    end
+  end
+
   describe "pop" do
     it "returns nil if empty" do
       @cache.pop.should be_nil

@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.3.5)
+    anticipate (0.1.1)
     builder (3.2.2)
     cucumber (1.3.6)
       builder (>= 2.1.2)
@@ -69,6 +70,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anticipate (~> 0.1.1)
   cucumber (~> 1.3)
   ffi-rzmq (~> 1.0.3)
   jeweler (~> 1.8)
