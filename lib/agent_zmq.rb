@@ -1,5 +1,13 @@
+require 'ffi-rzmq'
+require 'thread'
+
+require 'agent_zmq/configuration'
+require 'agent_zmq/helpers'
+require 'agent_zmq/agent'
+
 module AgentZMQ
   extend self
+  extend Configuration
 
   def agent_path
     "./config/zmq_agents.rb"
@@ -67,5 +75,4 @@ module AgentZMQ
   end
 end
 
-require 'agent_zmq/helpers'
-require 'agent_zmq/agent'
+

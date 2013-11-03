@@ -1,8 +1,13 @@
-require 'thread'
 module AgentZMQ::MessageCache
   def messages_received
     lock.synchronize do
       return messages.dup
+    end
+  end
+
+  def shift
+    lock.synchronize do
+      return messages.shift
     end
   end
 
