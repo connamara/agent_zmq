@@ -2,6 +2,8 @@ module AgentZMQ::BaseAgent
   attr_reader :name
 
   attr_accessor :end_point_type, :end_point, :socket_opts
+  alias :end_points :end_point
+  alias :end_points= :end_point=
 
   def zmq_context
     @ctx ||= ZMQ::Context.new 1
@@ -14,7 +16,11 @@ module AgentZMQ::BaseAgent
 
       case @end_point_type 
         when :connect
-          @sub_socket.connect(@end_point) 
+          if @end_point.is_a? Array
+            @end_point.each { |ep| @sub_socket.connect(ep) }
+          else
+            @sub_socket.connect(@end_point) 
+          end
         else
           @sub_socket.bind(@end_point) 
       end

@@ -53,6 +53,10 @@ module AgentZMQ
     define_agent(AgentZMQ::RepAgent.new(name), &blk)
   end
 
+  def define_ZMQ_DEALER(name, &blk)
+    define_agent(AgentZMQ::DealerAgent.new(name), &blk)
+  end
+
   #starts all configured agents
   def start
     raise RuntimeError, "No ZMQ Agents Defined" if agents.empty?

@@ -26,10 +26,10 @@ Then /^I should( not)? receive (?:a|another) (?:request|response|message) on (?:
   AgentZMQ.agents_hash[subscriber].respond_to?(:shift).should eq(true), "#{subscriber} is not an agent type that receives messages"
 
   if negative
-    @zmq_message = nil
+    msg = nil
     AgentZMQ.cucumber_retries.times do
-      @zmq_message=AgentZMQ.agents_hash[subscriber].shift
-      @zmq_message.should be_nil
+      msg=AgentZMQ.agents_hash[subscriber].shift
+      msg.should be_nil
       sleep AgentZMQ.cucumber_sleep_seconds
     end
   else
@@ -41,8 +41,7 @@ Then /^I should( not)? receive (?:a|another) (?:request|response|message) on (?:
 end
 
 Then /^the (?:zeromq|ZeroMQ|Zeromq) (?:request|response|message) should( not)? have (\d+) (?:parts|part)$/ do |length, negative|
-  throw "last_zmq_message is nil" if last_zmq_message.nil?
-  index = index.to_i
+  last_zmq_message.should_not eq(nil), "last_zmq_message is nil"
   length = length.to_i
 
   if negative
@@ -92,10 +91,28 @@ Then(/^the (?:zeromq|ZeroMQ|Zeromq) (?:request|response|message) should( not)? b
 end
 
 
-Then /^I keep part (\d+) of the (?:zeromq|ZeroMQ|Zeromq|) (?:request|response|message) as "(.*?)"$/  do |index, key|
+Then /^I keep part (\d+) of the (?:zeromq|ZeroMQ|Zeromq) (?:request|response|message) as "(.*?)"$/  do |index, key|
   CukeMem.memorize key, zmq_message_at(index)
 end
 
 Given(/^the following (?:zeromq|ZeroMQ|Zeromq) (?:request|response|message):$/) do |table|
   @zmq_message = table.raw.last
+
+  @zmq_message = @zmq_message.map do |element| 
+    CukeMem.remember element
+  end
 end
+
+Given /^I set part (\d+) of the (?:zeromq|ZeroMQ|Zeromq) (?:request|response|message) to "(.*?)"$/ do |index, value|
+  @zmq_message[index.to_i-1] = CukeMem.remember value
+end
+
+When /^I publish the (?:zeromq|Zeromq|ZeroMQ) (?:message|request|response) (?:from|with) (?:agent|socket) "([^"]*)"$/ do |publisher|
+  publisher = publisher.to_sym
+
+  AgentZMQ.agents_hash.has_key?(publisher).should eq(true), "Unknown agent '#{publisher}'"
+  AgentZMQ.agents_hash[publisher].respond_to?(:publish).should eq(true), "#{publisher} is not an agent type that publishes messages" 
+
+  AgentZMQ.agents_hash[publisher].publish @zmq_message
+end
+
