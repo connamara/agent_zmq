@@ -31,6 +31,11 @@ The agent types correspond to underlying ZMQ Socket type under test
 * Connects or Binds to local address
 * Listens for request, sends response
 
+#### ZMQ\_DEALER
+
+* Connects or Binds to local address
+* Listens for requests, sends responses
+
 
 ### Configuration
 
@@ -47,7 +52,7 @@ end
 
 AgentZMQ.define_ZMQ_PUB :my_pub_agent do |a|
   a.end_point_type=:connect
-  a.end_point='tcp://127.0.0.1:5558'
+  a.end_points=['tcp://127.0.0.1:5558', 'tcp://127.0.0.1:5559']
 end
 
 AgentZMQ.define_ZMQ_REQ :my_req_agent do |a|
