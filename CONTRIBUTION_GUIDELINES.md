@@ -15,6 +15,7 @@ Contributing to agent_zmq:
 1. Fork the [official repository](https://github.com/connamara/agent_zmq/tree/master).
 2. Make your changes in a topic branch.
 3. Send a pull request.
+4. If you are new contributor to this project, sign the CLA
 
 Notes:
 * If you report a bug and don't include a fix, please include a failing test.

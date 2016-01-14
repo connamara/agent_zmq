@@ -177,7 +177,7 @@ Contributers:
 * Chris Busbey
 * Brad Haan
 
-![Connamara Systems](http://www.connamara.com/images/home-connamara-logo-lg.png)
+![Connamara Systems](http://www.connamara.com/wp-content/uploads/2016/01/connamara_logo_dark.png)
 
 agent_zmq is maintained and funded by [Connamara Systems, llc](http://connamara.com).
 
@@ -186,6 +186,6 @@ The names and logos for Connamara Systems are trademarks of Connamara Systems, l
 Licensing
 ---------
 
-agent_zmq is Copyright © 2013 Connamara Systems, llc. 
+agent_zmq is Copyright © 2016 Connamara Systems, llc. 
 
 This software is available under the GPL and a commercial license.  Please see the [LICENSE](https://github.com/connamara/agent_zmq/blob/master/LICENSE.txt) file for the terms specified by the GPL license.  The commercial license offers more flexible licensing terms compared to the GPL, and includes support services.  [Contact us](mailto:info@connamara.com) for more information on the Connamara commercial license, what it enables, and how you can start developing with it.
