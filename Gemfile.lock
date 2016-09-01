@@ -79,6 +79,3 @@ DEPENDENCIES
   rack (~> 1.5)
   rake (~> 10.1)
   rspec (~> 2.14)
-
-BUNDLED WITH
-   1.10.1
