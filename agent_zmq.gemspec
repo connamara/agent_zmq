@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "agent_zmq.gemspec",
     "config/zmq_agents.rb",
-    "features/MessageInspection.feature",
+    "features/message_inspection.feature",
     "features/step_definitions/steps.rb",
     "features/support/env.rb",
     "lib/agent_zmq.rb",
