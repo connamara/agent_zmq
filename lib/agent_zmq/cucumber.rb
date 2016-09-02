@@ -55,7 +55,7 @@ def zmq_message_at index
   last_zmq_message.should_not eq(nil), "last_zmq_message is nil"
   index = index.to_i
 
-  (index <= last_zmq_message.length).should be_true, "last_zmq_message has only #{last_zmq_message.length} parts"
+  (index <= last_zmq_message.length).should be_truthy, "last_zmq_message has only #{last_zmq_message.length} parts"
   last_zmq_message[(index - 1)]
 end
 
