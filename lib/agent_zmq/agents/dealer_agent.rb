@@ -1,6 +1,7 @@
 require 'agent_zmq/agents/base_agent'
 
 class AgentZMQ::DealerAgent
+  include AgentZMQ::MessageCache
   include AgentZMQ::BaseAgent
 
   def initialize name
