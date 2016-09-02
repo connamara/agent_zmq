@@ -1,7 +1,6 @@
 require 'agent_zmq/agents/base_agent'
 
 class AgentZMQ::DealerAgent
-  include AgentZMQ::MessageCache
   include AgentZMQ::BaseAgent
 
   def initialize name
@@ -38,6 +37,8 @@ class AgentZMQ::DealerAgent
     return nil #timeout
   end
 
+  alias_method :shift, :pop
+  
   def reset
     #reset socket so as to not read old messages
     @sub_socket.close unless @sub_socket.nil?
