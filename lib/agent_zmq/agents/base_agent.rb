@@ -13,6 +13,12 @@ module AgentZMQ::BaseAgent
     return @sub_socket unless @sub_socket.nil?
 
     (@sub_socket = sock_type).tap do
+      if @socket_opts.is_a?(Array)
+        @socket_opts_after = @socket_opts.select {|o| o if o.has_key?(ZMQ::SUBSCRIBE) || o.has_key?(ZMQ::UNSUBSCRIBE) || o.has_key?(ZMQ::LINGER) }
+        @socket_opts_before = @socket_opts - @socket_opts_after
+      end
+
+      setsockopts(@sub_socket, @socket_opts_before)
 
       case @end_point_type 
         when :connect
@@ -25,11 +31,15 @@ module AgentZMQ::BaseAgent
           @sub_socket.bind(@end_point) 
       end
 
-      if @socket_opts.is_a? Array
-        @socket_opts.each do |opts|
-          opts.each_pair do |opt_name, opt_val|
-            @sub_socket.setsockopt(opt_name,opt_val)
-          end
+      setsockopts(@sub_socket, @socket_opts_after)
+    end
+  end
+
+  def setsockopts(sock, opts=[])
+    if opts.is_a?(Array)
+      opts.each do |o|
+        o.each_pair do |name, val|
+          sock.setsockopt(name, val)
         end
       end
     end

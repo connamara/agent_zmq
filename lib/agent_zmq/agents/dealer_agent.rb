@@ -18,7 +18,12 @@ class AgentZMQ::DealerAgent
   end
 
   def stop
-    zmq_socket.close
+    reset
+
+    unless @ctx.nil?
+      @ctx.terminate
+      @ctx = nil
+    end
   end
 
   def publish msg
@@ -37,9 +42,14 @@ class AgentZMQ::DealerAgent
     return nil #timeout
   end
 
+  alias_method :shift, :pop
+  
   def reset
     #reset socket so as to not read old messages
-    @sub_socket.close unless @sub_socket.nil?
-    @sub_socket = nil 
+    unless @sub_socket.nil?
+      @sub_socket.setsockopt(ZMQ::LINGER, 0)
+      @sub_socket.close
+      @sub_socket = nil
+    end
   end
 end
